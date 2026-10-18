@@ -1371,7 +1371,7 @@ a {
   }
 
   .zoo-card {
-    padding: 16px;
+    padding: 18px 16px;
     border-width: 2.5px;
     border-radius: 18px;
     box-shadow: 4px 5px 0 var(--card-shadow);
@@ -1388,10 +1388,11 @@ a {
   }
 
   .card-avatar {
-    width: 80px;
-    height: 80px;
-    font-size: 28px;
+    width: 72px;
+    height: 72px;
+    font-size: 26px;
     margin: 2px auto 10px;
+    border-width: 3px;
   }
 
   .card-title {
@@ -1399,14 +1400,42 @@ a {
   }
 
   .card-nick {
-    font-size: 12px;
+    font-size: 12.5px;
     margin-bottom: 8px;
   }
 
   .card-desc {
-    font-size: 11.5px;
-    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 12px;
     min-height: auto;
+    -webkit-line-clamp: 3; /* Give a bit more breathing room on mobile */
+  }
+
+  .card-bullets {
+    padding-top: 10px;
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .card-bullet-row {
+    font-size: 11.5px;
+  }
+
+  .bullet-text {
+    white-space: normal; /* Wrap cleanly so long strengths/weaknesses aren't abruptly cut off with ... */
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.4;
+  }
+
+  .card-tags {
+    gap: 5px;
+  }
+
+  .tag-pill {
+    font-size: 10px;
+    padding: 3px 8px;
   }
 
   /* Inner Pages (Compare, Matcher, About) */
