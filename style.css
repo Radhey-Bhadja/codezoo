@@ -42,6 +42,7 @@
 
 html, body {
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -616,8 +617,16 @@ a {
   outline: none;
 }
 
+.compare-content {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+
 .compare-table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
   background: var(--surface);
   border: 3px solid var(--dark-border);
@@ -1194,28 +1203,374 @@ a {
   opacity: 1;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 700px) {
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 900px) {
   .app-header {
-    padding: 0 14px;
+    padding: 0 16px;
+    height: auto;
+    min-height: 58px;
+    padding-top: max(6px, env(safe-area-inset-top));
+    padding-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px 12px;
   }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+  }
+
+  .filter-strip {
+    padding: 10px 16px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    width: 240px;
+  }
+}
+
+@media (max-width: 680px) {
+  /* Layout: Convert top pill tabs into comfortable mobile bottom navigation bar */
+  .app-shell {
+    height: 100dvh;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .app-header {
+    height: 54px;
+    min-height: 54px;
+    padding: 0 12px;
+    padding-top: env(safe-area-inset-top, 0px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--dark-border);
+  }
+
   .brand-sub {
     display: none;
   }
-  .filter-strip {
-    flex-wrap: wrap;
-    padding: 10px 14px;
+
+  .brand-main {
+    font-size: 15px;
   }
+
+  .logo-circle {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    border-width: 2.5px;
+  }
+
+  /* Fixed Mobile Bottom Navigation Bar */
+  .page-tabs {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    border: none;
+    border-top: 2px solid var(--dark-border);
+    border-radius: 0;
+    box-shadow: 0 -4px 16px rgba(24, 32, 51, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 4px;
+    z-index: 100;
+  }
+
+  .tab-btn {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 2px;
+    font-size: 10.5px;
+    font-weight: 700;
+    border-radius: 10px;
+    height: 100%;
+    min-width: 0;
+  }
+
+  .tab-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.2;
+    flex-shrink: 0;
+  }
+
+  .tab-btn.active {
+    background: var(--dark-border);
+    color: #ffffff;
+  }
+
+  .tab-btn .counter-bubble {
+    position: absolute;
+    top: 4px;
+    right: 18%;
+    font-size: 9px;
+    padding: 1px 5px;
+  }
+
+  .random-btn {
+    padding: 6px 12px;
+    font-size: 11.5px;
+  }
+
+  /* Filter Strip on Mobile */
+  .filter-strip {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .search-box {
     width: 100%;
   }
-  .cards-viewport {
-    padding: 14px;
+
+  .search-box input {
+    font-size: 13px;
+    padding: 8px 30px 8px 34px;
   }
+
+  .category-pills {
+    padding-bottom: 2px;
+    gap: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cat-pill {
+    padding: 5px 11px;
+    font-size: 11px;
+  }
+
+  .status-meta {
+    font-size: 11px;
+    text-align: right;
+    margin-top: -2px;
+  }
+
+  /* Cards Viewport & Grid */
+  .cards-viewport {
+    padding: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .cards-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
+
+  .zoo-card {
+    padding: 16px;
+    border-width: 2.5px;
+    border-radius: 18px;
+    box-shadow: 4px 5px 0 var(--card-shadow);
+  }
+
+  .zoo-card:hover {
+    transform: none; /* Disable 3D tilt on touch screens for stability */
+    box-shadow: 4px 5px 0 var(--card-shadow);
+  }
+
+  .zoo-card:active {
+    transform: scale(0.99);
+    box-shadow: 2px 3px 0 var(--card-shadow);
+  }
+
+  .card-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+    margin: 2px auto 10px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .card-nick {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 11.5px;
+    margin-bottom: 10px;
+    min-height: auto;
+  }
+
+  /* Inner Pages (Compare, Matcher, About) */
+  .inner-page-wrap {
+    padding: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .page-head {
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .page-head h2 {
+    font-size: 20px;
+  }
+
+  .page-head .sub {
+    font-size: 12px;
+  }
+
+  .compare-selector-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .compare-selector-row select {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  /* Matcher Mobile */
+  .quiz-box {
+    padding: 16px;
+    border-radius: 18px;
+    box-shadow: 4px 5px 0 var(--dark-border);
+  }
+
+  .quiz-q {
+    font-size: 17px;
+  }
+
+  .matcher-sub {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .quiz-opt {
+    padding: 10px 12px;
+    font-size: 12.5px;
+    gap: 10px;
+  }
+
+  .matcher-winner-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .matcher-winner-info h3 {
+    font-size: 20px;
+  }
+
+  .matcher-winner-tags {
+    justify-content: center;
+  }
+
+  .matcher-tradeoff-box {
+    text-align: left;
+    font-size: 11.5px;
+  }
+
+  .matcher-runnerup-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* About Card Mobile */
+  .about-card {
+    padding: 18px 14px;
+    font-size: 13px;
+    border-radius: 18px;
+  }
+
+  .about-logo-img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .spec-row {
+    flex-direction: column;
+    gap: 2px;
+    font-size: 12px;
+  }
+
+  /* Modal Mobile (Bottom Sheet / Responsive Modal) */
+  .modal.open {
+    padding: 10px;
+    align-items: flex-end; /* Slide up comfortably from bottom on mobile */
+  }
+
+  .modal-panel {
+    width: 100%;
+    max-height: 86vh;
+    padding: 18px 16px;
+    border-radius: 20px 20px 16px 16px;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .modal-top {
+    gap: 12px;
+  }
+
+  .modal-avatar {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+
+  .modal-top h2 {
+    font-size: 20px;
+  }
+
   .modal-pros-cons {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .modal-bottom-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-bottom-actions .btn-secondary,
+  .modal-bottom-actions .btn-primary {
+    width: 100%;
+    text-align: center;
+    padding: 10px 14px;
+  }
+
+  /* Toast notification on mobile */
+  .toast {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    left: 16px;
+    right: 16px;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
+/* Extra small mobile screens (e.g. 360px and below) */
+@media (max-width: 360px) {
+  .brand-main {
+    font-size: 14px;
+  }
+
+  .tab-btn span {
+    font-size: 9.5px;
+  }
+
+  .random-btn span {
+    display: inline;
   }
 }
